@@ -1,5 +1,15 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Configuration
+
+Set your company/app name and contact details in environment variables:
+
+```bash
+cp .env.example .env.local
+```
+
+Edit `.env.local` as needed (for example `NEXT_PUBLIC_COMPANY_NAME`).
+
 ## Getting Started
 
 First, run the development server:
