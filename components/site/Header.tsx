@@ -69,7 +69,7 @@ export function Header() {
             />
             {siteName}
           </Link>
-        </div>
+        </div> 
 
         <nav className="hidden items-center gap-1 md:flex">
           {primaryNav.map((item) => (
