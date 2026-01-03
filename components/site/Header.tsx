@@ -63,9 +63,8 @@ export function Header() {
             <Image
               src="/ZenogixLogo.png"
               alt={`${siteName} logo`}
-              width={24}
-              height={24}
-              className="h-6 w-6"
+              width={75}
+              height={75}
               priority
             />
             {siteName}
