@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -59,7 +60,14 @@ export function Header() {
             href="/"
             className="group inline-flex items-center gap-2 rounded-xl px-2 py-1 text-sm font-semibold tracking-tight text-zinc-950 hover:bg-zinc-100 dark:text-white dark:hover:bg-white/10"
           >
-            <span className="h-2.5 w-2.5 rounded-full bg-[color-mix(in_oklab,var(--brand)_70%,black)] shadow-sm dark:bg-[color-mix(in_oklab,var(--brand)_85%,white)]" />
+            <Image
+              src="/ZenogixLogo.png"
+              alt={`${siteName} logo`}
+              width={24}
+              height={24}
+              className="h-6 w-6"
+              priority
+            />
             {siteName}
           </Link>
         </div>

@@ -55,7 +55,7 @@ export function LandingHero({
   return (
     <LazyMotion features={domAnimation}>
       <section className="relative">
-        <Container className="relative py-14 sm:py-20">
+        <Container className="relative py-16 sm:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             <m.div
               className="lg:col-span-6"
@@ -286,7 +286,7 @@ export function LandingHero({
 
           <m.div
             aria-hidden
-            className="pointer-events-none mt-14 flex justify-center"
+            className="pointer-events-none mt-16 flex justify-center"
             initial={reduced ? undefined : { opacity: 0 }}
             animate={reduced ? undefined : { opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}

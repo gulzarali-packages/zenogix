@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     template: `%s · ${siteName}`,
   },
   description: siteDescription,
+  icons: {
+    icon: "/ZenogixLogo.png",
+  },
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "https://example.com",
   ),

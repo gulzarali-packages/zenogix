@@ -5,7 +5,7 @@ import { HoverLift } from "@/components/motion/Interactive";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { ProcessTimeline, type ProcessStep } from "@/components/site/ProcessTimeline";
 import { ButtonLink } from "@/components/ui/Button";
-import { CardLink } from "@/components/ui/Card";
+import { Card, CardLink } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { caseStudies } from "@/lib/content/caseStudies";
@@ -184,6 +184,20 @@ export default function Home() {
       deliverables: ["Launch checklist", "Monitoring + fixes", "Next-step roadmap"],
     },
   ];
+  const highlights = [
+    {
+      title: "Senior-led delivery",
+      desc: "Small teams with clear ownership and fast decision-making.",
+    },
+    {
+      title: "Performance-first",
+      desc: "Core Web Vitals, accessibility, and conversion-focused UX.",
+    },
+    {
+      title: "AI with guardrails",
+      desc: "Useful automation with privacy, reliability, and cost controls.",
+    },
+  ];
 
   return (
     <div className="relative overflow-hidden bg-white dark:bg-black">
@@ -191,15 +205,36 @@ export default function Home() {
       <LandingHero siteName={siteName} siteTagline={siteTagline} />
 
       <section className="border-t border-zinc-200 bg-zinc-50/50 dark:border-white/10 dark:bg-white/[0.03]">
-        <Container className="py-14">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Services"
-              title="Everything you need to ship"
-              description="From discovery to delivery, we design and build software that’s fast, accessible, and ready to scale."
-            />
-          </Reveal>
-          <Stagger className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <Container className="py-16 sm:py-24">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-6">
+              <Reveal>
+                <SectionHeading
+                  eyebrow="Services"
+                  title="Everything you need to ship"
+                  description="From discovery to delivery, we design and build software that’s fast, accessible, and ready to scale."
+                />
+              </Reveal>
+            </div>
+            <Stagger className="lg:col-span-6 grid gap-3 sm:grid-cols-3">
+              {highlights.map((item) => (
+                <StaggerItem key={item.title} className="h-full">
+                  <HoverLift className="h-full">
+                    <Card className="h-full">
+                      <p className="text-sm font-semibold text-zinc-950 dark:text-white">
+                        {item.title}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                        {item.desc}
+                      </p>
+                    </Card>
+                  </HoverLift>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+
+          <Stagger className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {services.slice(0, 6).map((service) => (
               <StaggerItem key={service.slug} className="h-full">
                 <HoverLift className="h-full">
@@ -272,17 +307,19 @@ export default function Home() {
               </HoverLift>
             </StaggerItem>
           </Stagger>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href="/services" variant="secondary">
-              View all services
-            </ButtonLink>
-            <ButtonLink href="/contact">Request a quote</ButtonLink>
-          </div>
+          <Reveal>
+            <div className="mt-12 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/services" variant="secondary">
+                View all services
+              </ButtonLink>
+              <ButtonLink href="/contact">Request a quote</ButtonLink>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
       <section className="border-t border-zinc-200 bg-white dark:border-white/10 dark:bg-black">
-        <Container className="py-14">
+        <Container className="py-16 sm:py-24">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-5">
               <Reveal>
@@ -293,33 +330,35 @@ export default function Home() {
                 />
               </Reveal>
               <Reveal delay={0.08}>
-                <div className="mt-8 rounded-3xl border bg-white/70 p-6 shadow-sm glass">
-                  <p className="text-xs font-semibold tracking-widest text-zinc-500 dark:text-zinc-400">
-                    WHAT YOU GET
-                  </p>
-                  <ul className="mt-4 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-                    {[
-                      "Weekly demo + written update",
-                      "Clear timeline and scope slices",
-                      "Quality checks (types, lint, performance)",
-                      "Async-friendly communication",
-                      "A clean handoff with documentation",
-                    ].map((item) => (
-                      <li key={item} className="flex gap-2">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color-mix(in_oklab,var(--brand-2)_70%,black)] dark:bg-[color-mix(in_oklab,var(--brand-2)_70%,white)]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                    <ButtonLink href="/contact" className="glow-ring">
-                      Request a quote
-                    </ButtonLink>
-                    <ButtonLink href="/services" variant="secondary">
-                      Explore services
-                    </ButtonLink>
+                <HoverLift>
+                  <div className="mt-8 rounded-3xl border bg-white/70 p-6 shadow-sm glass">
+                    <p className="text-xs font-semibold tracking-widest text-zinc-500 dark:text-zinc-400">
+                      WHAT YOU GET
+                    </p>
+                    <ul className="mt-4 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
+                      {[
+                        "Weekly demo + written update",
+                        "Clear timeline and scope slices",
+                        "Quality checks (types, lint, performance)",
+                        "Async-friendly communication",
+                        "A clean handoff with documentation",
+                      ].map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[color-mix(in_oklab,var(--brand-2)_70%,black)] dark:bg-[color-mix(in_oklab,var(--brand-2)_70%,white)]" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                      <ButtonLink href="/contact" className="glow-ring">
+                        Request a quote
+                      </ButtonLink>
+                      <ButtonLink href="/services" variant="secondary">
+                        Explore services
+                      </ButtonLink>
+                    </div>
                   </div>
-                </div>
+                </HoverLift>
               </Reveal>
             </div>
 
@@ -333,7 +372,7 @@ export default function Home() {
       </section>
 
       <section className="border-t border-zinc-200 bg-zinc-50/60 dark:border-white/10 dark:bg-white/[0.03]">
-        <Container className="py-14">
+        <Container className="py-16 sm:py-24">
           <Reveal>
             <SectionHeading
               eyebrow="Work"
@@ -341,51 +380,59 @@ export default function Home() {
               description="A few examples of the kind of outcomes we help teams achieve."
             />
           </Reveal>
-          <Stagger className="mt-10 grid gap-4 lg:grid-cols-3">
+          <Stagger className="mt-12 grid gap-4 lg:grid-cols-3">
             {caseStudies.slice(0, 3).map((study) => (
               <StaggerItem key={study.slug}>
-                <CardLink href={`/work/${study.slug}`}>
-                  <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-                    {study.industry}
-                  </p>
-                  <h3 className="mt-2 text-base font-semibold text-zinc-950 dark:text-white">
-                    {study.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                    {study.summary}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {study.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full border px-2 py-0.5 text-xs text-zinc-600 glass dark:text-zinc-300"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardLink>
+                <HoverLift>
+                  <CardLink href={`/work/${study.slug}`}>
+                    <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                      {study.industry}
+                    </p>
+                    <h3 className="mt-2 text-base font-semibold text-zinc-950 dark:text-white">
+                      {study.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                      {study.summary}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {study.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border px-2 py-0.5 text-xs text-zinc-600 glass dark:text-zinc-300"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </CardLink>
+                </HoverLift>
               </StaggerItem>
             ))}
           </Stagger>
-          <div className="mt-10 flex items-center justify-between gap-4">
-            <ButtonLink href="/work" variant="secondary">
-              See all work
-            </ButtonLink>
-            <Link
-              href="/contact"
-              className="text-sm font-medium text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
-            >
-              Have a project? Let’s talk <span aria-hidden>→</span>
-            </Link>
-          </div>
+          <Reveal>
+            <div className="mt-12 flex items-center justify-between gap-4">
+              <ButtonLink href="/work" variant="secondary">
+                See all work
+              </ButtonLink>
+              <Link
+                href="/contact"
+                className="text-sm font-medium text-zinc-600 hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
+              >
+                Have a project? Let’s talk <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </Reveal>
         </Container>
       </section>
 
       <section className="border-t border-zinc-200 bg-white dark:border-white/10 dark:bg-black">
-        <Container className="py-14">
+        <Container className="py-16 sm:py-24">
           <Reveal>
-            <div className="rounded-3xl border p-8 shadow-sm glass sm:p-10">
+            <div className="relative overflow-hidden rounded-3xl border p-8 shadow-sm glass sm:p-10">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(700px_280px_at_10%_0%,color-mix(in_oklab,var(--brand)_18%,transparent),transparent_60%)] opacity-80"
+              />
               <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-xl">
                   <p className="text-xs font-semibold tracking-widest text-zinc-500 dark:text-zinc-400">
