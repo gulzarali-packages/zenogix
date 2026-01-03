@@ -16,7 +16,6 @@ export function ContactForm({ toEmail }: { toEmail: string }) {
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [message, setMessage] = useState("");
-  
 
   const mailto = useMemo(() => {
     const subject = encodeURIComponent(
